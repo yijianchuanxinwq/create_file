@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>创建一个文件并且写入内容</title>
+	</head>
+	<body>
+		<textarea name="" id="content"></textarea>
+	</body>
+	<script type="text/javascript">
+		$("#content").on('change', function() {
+	contentN = $('#content').val();
+	console.log(contentN);
+	$.ajax({
+		type: "post",
+		url: "create_file.php",
+		data: {
+			contentN: contentN
+		},
+		success: function(res) {
+			path = res;
+			filename = res.split('upload/', 200)[1];
+//			console.log(path + '--' + filename);
+		}
+	});
+
+});
+	</script>
+</html>
